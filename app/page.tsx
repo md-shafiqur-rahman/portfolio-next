@@ -266,8 +266,8 @@ export default function HomePage() {
 
         {/* ABOUT */}
         <section id="about" style={{ marginBottom: "80px" }}>
-          <div className="section-label">About Me</div>
-          <div className="section-title">Turning Manual Chaos<br />Into Automated Growth</div>
+          <h3 className="section-label">About Me</h3>
+          <h2 className="section-title">Turning Manual Chaos<br />Into Automated Growth</h2>
           <div className="about-grid">
             <div className="about-text reveal-left">
               <p>Manual processes slow growth. Smart systems scale businesses. I build intelligent automation with AI that saves time and increases revenue.</p>
@@ -287,8 +287,8 @@ export default function HomePage() {
 
         {/* SERVICES */}
         <section id="services" style={{ marginBottom: "80px" }}>
-          <div className="section-label">What I Do</div>
-          <div className="section-title">Services That Scale<br />Your Business</div>
+          <h3 className="section-label">What I Do</h3>
+          <h2 className="section-title">Services That Scale<br />Your Business</h2>
           <div className="strategy-grid services-bento">
             {[
               { icon: "🤖", title: "AI Workflow Automation", desc: "End-to-end automation using n8n, Make, and Zapier. From lead capture to follow-up sequences — fully hands-free.", cls: "purple bento-featured" },
@@ -301,7 +301,7 @@ export default function HomePage() {
             ].map((s, i) => (
               <div className={`strategy-card ${s.cls}`} key={i}>
                 <div className="card-icon">{s.icon}</div>
-                <div className="card-title">{s.title}</div>
+                <h3 className="card-title">{s.title}</h3>
                 <div className="card-desc">{s.desc}</div>
               </div>
             ))}
@@ -310,8 +310,8 @@ export default function HomePage() {
 
         {/* SKILLS */}
         <section id="skills" style={{ marginBottom: "80px" }}>
-          <div className="section-label">Tech Stack</div>
-          <div className="section-title">Tools & Technologies<br />I Work With</div>
+          <h3 className="section-label">Tech Stack</h3>
+          <h2 className="section-title">Tools & Technologies<br />I Work With</h2>
           <div className="premium-section">
             <p style={{ color: "var(--muted)", fontSize: "14px", maxWidth: "600px", lineHeight: "1.7" }}>Every tool is chosen for a reason. Here&apos;s the stack I use to build automation systems that are fast, reliable, and scalable.</p>
             <div className="premium-grid">
@@ -332,8 +332,8 @@ export default function HomePage() {
             </div>
           </div>
           <div style={{ marginTop: "60px" }}>
-            <div className="section-label">Expertise</div>
-            <div className="section-title" style={{ fontSize: "clamp(24px, 4vw, 36px)", marginBottom: "24px" }}>Core Skills & Capabilities</div>
+            <h3 className="section-label">Expertise</h3>
+            <h2 className="section-title" style={{ fontSize: "clamp(24px, 4vw, 36px)", marginBottom: "24px" }}>Core Skills & Capabilities</h2>
           </div>
           <div className="timing-table">
             <div className="timing-row header"><span>Skill</span><span>Proficiency</span><span>Context</span></div>
@@ -356,8 +356,8 @@ export default function HomePage() {
 
         {/* PROCESS */}
         <section id="process" style={{ marginBottom: "20px" }}>
-          <div className="section-label">My Process</div>
-          <div className="section-title">How I Build Your<br />Automation System</div>
+          <h3 className="section-label">My Process</h3>
+          <h2 className="section-title">How I Build Your<br />Automation System</h2>
         </section>
         <div className="authority-list" style={{ marginBottom: "80px" }}>
           {[
@@ -368,15 +368,15 @@ export default function HomePage() {
           ].map((item, i) => (
             <div className="authority-item" key={i}>
               <div className="authority-num">{item.num}</div>
-              <div><div className="authority-title">{item.title}</div><div className="authority-desc">{item.desc}</div></div>
+              <div><h3 className="authority-title">{item.title}</h3><div className="authority-desc">{item.desc}</div></div>
             </div>
           ))}
         </div>
 
         {/* EXPERIENCE */}
         <section id="experience" style={{ marginBottom: "20px" }}>
-          <div className="section-label">Experience</div>
-          <div className="section-title">Where I&apos;ve Made<br />An Impact</div>
+          <h3 className="section-label">Experience</h3>
+          <h2 className="section-title">Where I&apos;ve Made<br />An Impact</h2>
         </section>
         <div className="week-grid" style={{ marginBottom: "80px" }}>
           {[
@@ -406,8 +406,8 @@ export default function HomePage() {
 
         {/* SHOWCASE */}
         <section id="showcase" style={{ marginBottom: "20px" }}>
-          <div className="section-label">Work Showcase</div>
-          <div className="section-title">See My Automations<br />in Action</div>
+          <h3 className="section-label">Work Showcase</h3>
+          <h2 className="section-title">See My Automations<br />in Action</h2>
         </section>
         <div className="showcase-intro" style={{ marginBottom: "40px" }}>
           <p style={{ color: "var(--muted)", fontSize: "14px", maxWidth: "600px", lineHeight: "1.7" }}>Real workflows. Real results. Watch how I build intelligent automation systems using n8n, AI agents, and API integrations that save hours every day.</p>
@@ -421,8 +421,8 @@ export default function HomePage() {
 
         {/* WHY ME */}
         <section style={{ marginBottom: "20px" }}>
-          <div className="section-label">Why Me</div>
-          <div className="section-title">What You Get When<br />You Work With Me</div>
+          <h3 className="section-label">Why Me</h3>
+          <h2 className="section-title">What You Get When<br />You Work With Me</h2>
         </section>
         <div className="hooks-grid" style={{ marginBottom: "80px" }}>
           {[
@@ -444,8 +444,8 @@ export default function HomePage() {
 
         {/* TESTIMONIALS */}
         <section style={{ marginBottom: "20px" }}>
-          <div className="section-label">Testimonials</div>
-          <div className="section-title">What Clients<br />Say About Me</div>
+          <h3 className="section-label">Testimonials</h3>
+          <h2 className="section-title">What Clients<br />Say About Me</h2>
         </section>
         <div className="testimonials-grid" style={{ marginBottom: "80px" }}>
           {[
@@ -467,8 +467,8 @@ export default function HomePage() {
 
         {/* CONTACT */}
         <section id="contact" style={{ marginBottom: "20px" }}>
-          <div className="section-label">Get Started</div>
-          <div className="section-title">Ready to Automate<br />Your Business?</div>
+          <h3 className="section-label">Get Started</h3>
+          <h2 className="section-title">Ready to Automate<br />Your Business?</h2>
         </section>
         <div className="premium-section" style={{ marginBottom: "80px", textAlign: "center" }}>
           <div style={{ maxWidth: "650px", margin: "0 auto" }}>
@@ -523,8 +523,8 @@ export default function HomePage() {
 
         {/* METRICS */}
         <section style={{ marginBottom: "20px" }}>
-          <div className="section-label">Impact</div>
-          <div className="section-title">Numbers That Speak</div>
+          <h3 className="section-label">Impact</h3>
+          <h2 className="section-title">Numbers That Speak</h2>
         </section>
         <div className="strategy-grid" style={{ marginBottom: "80px" }}>
           {[
@@ -534,7 +534,7 @@ export default function HomePage() {
           ].map((m, i) => (
             <div className={`strategy-card ${m.cls}`} key={i}>
               <div className="card-icon">{m.icon}</div>
-              <div className="card-title">{m.title}</div>
+              <h3 className="card-title">{m.title}</h3>
               <div className="card-desc">{m.desc}</div>
             </div>
           ))}

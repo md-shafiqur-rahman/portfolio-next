@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   title: "Md Shafiqur Rahman — AI Automation Expert",
   description:
     "Md Shafiqur Rahman is an AI Automation Expert specializing in n8n, Make, Zapier workflows. Building intelligent automation systems that save time and multiply results.",
-  metadataBase: new URL("https://shafiqur.dev"),
+  metadataBase: new URL("https://shafiqur.vercel.app"),
   openGraph: {
     type: "website",
-    url: "https://shafiqur.dev/",
+    url: "https://shafiqur.vercel.app/",
     title: "Md Shafiqur Rahman — AI Automation Expert",
     description:
       "I build smart, scalable automation systems using n8n, Make, Zapier, APIs, and AI Agents that save time and multiply results for businesses.",
@@ -23,6 +23,38 @@ export const metadata: Metadata = {
   },
   other: {
     "google-site-verification": "-DYKBnPEEeh1L6xYBBVeKZ6Y-xbP9ahjBuzoD2iHd4M",
+  },
+};
+
+const schemaOrgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Md Shafiqur Rahman",
+  url: "https://shafiqur.vercel.app",
+  image: "https://shafiqur.vercel.app/profile.png",
+  jobTitle: "AI Automation Expert",
+  description:
+    "AI Automation Expert specializing in n8n, Make, Zapier workflows. Building intelligent automation systems that save time and multiply results.",
+  sameAs: [
+    "https://www.linkedin.com/in/automation-by-shafiq/",
+  ],
+  knowsAbout: [
+    "AI Automation",
+    "n8n",
+    "Make",
+    "Zapier",
+    "API Integration",
+    "AI Agents",
+    "RAG",
+    "Python",
+    "Workflow Automation",
+  ],
+  email: "shafiqur.dev@gmail.com",
+  offers: {
+    "@type": "Offer",
+    name: "AI Workflow Automation Services",
+    description:
+      "End-to-end automation using n8n, Make, and Zapier. AI agents, API integrations, and business process automation.",
   },
 };
 
@@ -42,7 +74,11 @@ export default function RootLayout({
           rel="icon"
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"
         />
-        <link rel="canonical" href="https://shafiqur.dev/" />
+        <link rel="canonical" href="https://shafiqur.vercel.app/" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgJsonLd) }}
+        />
       </head>
       <body>{children}</body>
     </html>

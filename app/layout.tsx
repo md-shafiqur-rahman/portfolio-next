@@ -28,34 +28,136 @@ export const metadata: Metadata = {
 
 const schemaOrgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Md Shafiqur Rahman",
-  url: "https://shafiqur.vercel.app",
-  image: "https://shafiqur.vercel.app/profile.png",
-  jobTitle: "AI Automation Expert",
-  description:
-    "AI Automation Expert specializing in n8n, Make, Zapier workflows. Building intelligent automation systems that save time and multiply results.",
-  sameAs: [
-    "https://www.linkedin.com/in/automation-by-shafiq/",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://shafiqur.vercel.app/#person",
+      name: "Md Shafiqur Rahman",
+      url: "https://shafiqur.vercel.app",
+      image: {
+        "@type": "ImageObject",
+        url: "https://shafiqur.vercel.app/profile.png",
+        width: 320,
+        height: 320,
+      },
+      jobTitle: "AI Automation Expert",
+      description:
+        "AI Automation Expert specializing in n8n, Make, Zapier workflows. Building intelligent automation systems that save time and multiply results.",
+      sameAs: [
+        "https://www.linkedin.com/in/automation-by-shafiq/",
+        "https://wa.me/8801600534507",
+      ],
+      knowsAbout: [
+        "AI Automation",
+        "n8n Workflow Automation",
+        "Make (Integromat)",
+        "Zapier",
+        "API Integration",
+        "AI Agents",
+        "Retrieval-Augmented Generation (RAG)",
+        "Python Scripting",
+        "Business Process Automation",
+        "Chatbot Development",
+        "SEO",
+      ],
+      email: "shafiqur.dev@gmail.com",
+      telephone: "+8801600534507",
+      nationality: "BD",
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "AI Automation Expert",
+        occupationLocation: {
+          "@type": "Country",
+          name: "Bangladesh",
+        },
+        description: "Building intelligent automation systems using n8n, Make, Zapier, APIs, and AI Agents.",
+        skills: "n8n, Make, Zapier, Python, OpenAI, RAG, API Integration",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://shafiqur.vercel.app/#website",
+      url: "https://shafiqur.vercel.app",
+      name: "Md Shafiqur Rahman — AI Automation Expert",
+      description:
+        "Portfolio of Md Shafiqur Rahman, an AI Automation Expert specializing in n8n, Make, Zapier, APIs, and AI Agents.",
+      publisher: {
+        "@id": "https://shafiqur.vercel.app/#person",
+      },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://shafiqur.vercel.app/#webpage",
+      url: "https://shafiqur.vercel.app",
+      name: "Md Shafiqur Rahman — AI Automation Expert | n8n, Make, Zapier",
+      isPartOf: { "@id": "https://shafiqur.vercel.app/#website" },
+      about: { "@id": "https://shafiqur.vercel.app/#person" },
+      description:
+        "Hire Md Shafiqur Rahman for AI automation, n8n workflows, Make scenarios, Zapier automations, AI agents, and API integrations. Save time and multiply results.",
+      inLanguage: "en-US",
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://shafiqur.vercel.app",
+          },
+        ],
+      },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://shafiqur.vercel.app/#service",
+      name: "AI Workflow Automation Services by Md Shafiqur Rahman",
+      url: "https://shafiqur.vercel.app",
+      description:
+        "End-to-end AI automation using n8n, Make, and Zapier. AI agents, API integrations, chatbots, and business process automation.",
+      provider: { "@id": "https://shafiqur.vercel.app/#person" },
+      areaServed: "Worldwide",
+      serviceType: [
+        "AI Workflow Automation",
+        "AI Agent Development",
+        "API Integration",
+        "Business Process Automation",
+        "Chatbot Development",
+        "Automation Consulting",
+        "Lead Generation Automation",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Automation Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "AI Workflow Automation",
+              description: "End-to-end automation using n8n, Make, and Zapier.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "AI Agent Development",
+              description: "Custom AI agents powered by RAG, LLMs, and vector databases.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "API & Data Integration",
+              description: "Seamlessly connect CRM, databases, payment systems, and third-party APIs.",
+            },
+          },
+        ],
+      },
+    },
   ],
-  knowsAbout: [
-    "AI Automation",
-    "n8n",
-    "Make",
-    "Zapier",
-    "API Integration",
-    "AI Agents",
-    "RAG",
-    "Python",
-    "Workflow Automation",
-  ],
-  email: "shafiqur.dev@gmail.com",
-  offers: {
-    "@type": "Offer",
-    name: "AI Workflow Automation Services",
-    description:
-      "End-to-end automation using n8n, Make, and Zapier. AI agents, API integrations, and business process automation.",
-  },
 };
 
 export default function RootLayout({

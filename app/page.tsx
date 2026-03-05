@@ -266,7 +266,7 @@ export default function HomePage() {
 
         {/* ABOUT */}
         <section id="about" style={{ marginBottom: "80px" }}>
-          <h3 className="section-label">About Me</h3>
+          <p className="section-label">About Me</p>
           <h2 className="section-title">Turning Manual Chaos<br />Into Automated Growth</h2>
           <div className="about-grid">
             <div className="about-text reveal-left">
@@ -287,7 +287,7 @@ export default function HomePage() {
 
         {/* SERVICES */}
         <section id="services" style={{ marginBottom: "80px" }}>
-          <h3 className="section-label">What I Do</h3>
+          <p className="section-label">What I Do</p>
           <h2 className="section-title">Services That Scale<br />Your Business</h2>
           <div className="strategy-grid services-bento">
             {[
@@ -310,7 +310,7 @@ export default function HomePage() {
 
         {/* SKILLS */}
         <section id="skills" style={{ marginBottom: "80px" }}>
-          <h3 className="section-label">Tech Stack</h3>
+          <p className="section-label">Tech Stack</p>
           <h2 className="section-title">Tools & Technologies<br />I Work With</h2>
           <div className="premium-section">
             <p style={{ color: "var(--muted)", fontSize: "14px", maxWidth: "600px", lineHeight: "1.7" }}>Every tool is chosen for a reason. Here&apos;s the stack I use to build automation systems that are fast, reliable, and scalable.</p>
@@ -332,7 +332,7 @@ export default function HomePage() {
             </div>
           </div>
           <div style={{ marginTop: "60px" }}>
-            <h3 className="section-label">Expertise</h3>
+            <p className="section-label">Expertise</p>
             <h2 className="section-title" style={{ fontSize: "clamp(24px, 4vw, 36px)", marginBottom: "24px" }}>Core Skills & Capabilities</h2>
           </div>
           <div className="timing-table">
@@ -356,7 +356,7 @@ export default function HomePage() {
 
         {/* PROCESS */}
         <section id="process" style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">My Process</h3>
+          <p className="section-label">My Process</p>
           <h2 className="section-title">How I Build Your<br />Automation System</h2>
         </section>
         <div className="authority-list" style={{ marginBottom: "80px" }}>
@@ -375,7 +375,7 @@ export default function HomePage() {
 
         {/* EXPERIENCE */}
         <section id="experience" style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">Experience</h3>
+          <p className="section-label">Experience</p>
           <h2 className="section-title">Where I&apos;ve Made<br />An Impact</h2>
         </section>
         <div className="week-grid" style={{ marginBottom: "80px" }}>
@@ -406,7 +406,7 @@ export default function HomePage() {
 
         {/* SHOWCASE */}
         <section id="showcase" style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">Work Showcase</h3>
+          <p className="section-label">Work Showcase</p>
           <h2 className="section-title">See My Automations<br />in Action</h2>
         </section>
         <div className="showcase-intro" style={{ marginBottom: "40px" }}>
@@ -421,7 +421,7 @@ export default function HomePage() {
 
         {/* WHY ME */}
         <section style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">Why Me</h3>
+          <p className="section-label">Why Me</p>
           <h2 className="section-title">What You Get When<br />You Work With Me</h2>
         </section>
         <div className="hooks-grid" style={{ marginBottom: "80px" }}>
@@ -444,7 +444,7 @@ export default function HomePage() {
 
         {/* TESTIMONIALS */}
         <section style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">Testimonials</h3>
+          <p className="section-label">Testimonials</p>
           <h2 className="section-title">What Clients<br />Say About Me</h2>
         </section>
         <div className="testimonials-grid" style={{ marginBottom: "80px" }}>
@@ -467,7 +467,7 @@ export default function HomePage() {
 
         {/* CONTACT */}
         <section id="contact" style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">Get Started</h3>
+          <p className="section-label">Get Started</p>
           <h2 className="section-title">Ready to Automate<br />Your Business?</h2>
         </section>
         <div className="premium-section" style={{ marginBottom: "80px", textAlign: "center" }}>
@@ -523,7 +523,7 @@ export default function HomePage() {
 
         {/* METRICS */}
         <section style={{ marginBottom: "20px" }}>
-          <h3 className="section-label">Impact</h3>
+          <p className="section-label">Impact</p>
           <h2 className="section-title">Numbers That Speak</h2>
         </section>
         <div className="strategy-grid" style={{ marginBottom: "80px" }}>

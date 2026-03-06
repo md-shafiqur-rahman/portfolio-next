@@ -204,6 +204,10 @@ nav#main-nav.nav-scrolled {
     align-items: center;
 }
 
+.hero-content {
+    align-self: start;
+}
+
 .hero-content .premium-badge {
     margin-bottom: 24px;
 }
@@ -213,6 +217,8 @@ nav#main-nav.nav-scrolled {
     text-align: left;
     max-width: 480px;
     margin: 0 0 32px 0;
+    /* Fixed height prevents layout shift during typewriter animation */
+    min-height: 84px;
 }
 
 .hero-cta {
@@ -492,6 +498,8 @@ header {
     max-width: 500px;
     margin: 0 auto;
     line-height: 1.75;
+    /* Reserve space upfront — prevents content jump during typewriter animation */
+    contain: layout style;
 }
 
 .premium-badge {

@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   title: "Md Shafiqur Rahman — AI Automation Expert",
   description:
     "Md Shafiqur Rahman is an AI Automation Expert specializing in n8n, Make, Zapier workflows. Building intelligent automation systems that save time and multiply results.",
-  metadataBase: new URL("https://shafiqur.vercel.app"),
+  metadataBase: new URL("https://shafiqur.dev"),
   openGraph: {
     type: "website",
-    url: "https://shafiqur.vercel.app/",
+    url: "https://shafiqur.dev/",
     title: "Md Shafiqur Rahman — AI Automation Expert",
     description:
       "I build smart, scalable automation systems using n8n, Make, Zapier, APIs, and AI Agents that save time and multiply results for businesses.",
@@ -31,12 +31,12 @@ const schemaOrgJsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://shafiqur.vercel.app/#person",
+      "@id": "https://shafiqur.dev/#person",
       name: "Md Shafiqur Rahman",
-      url: "https://shafiqur.vercel.app",
+      url: "https://shafiqur.dev",
       image: {
         "@type": "ImageObject",
-        url: "https://shafiqur.vercel.app/profile.png",
+        url: "https://shafiqur.dev/profile.png",
         width: 320,
         height: 320,
       },
@@ -76,23 +76,23 @@ const schemaOrgJsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://shafiqur.vercel.app/#website",
-      url: "https://shafiqur.vercel.app",
+      "@id": "https://shafiqur.dev/#website",
+      url: "https://shafiqur.dev",
       name: "Md Shafiqur Rahman — AI Automation Expert",
       description:
         "Portfolio of Md Shafiqur Rahman, an AI Automation Expert specializing in n8n, Make, Zapier, APIs, and AI Agents.",
       publisher: {
-        "@id": "https://shafiqur.vercel.app/#person",
+        "@id": "https://shafiqur.dev/#person",
       },
       inLanguage: "en-US",
     },
     {
       "@type": "WebPage",
-      "@id": "https://shafiqur.vercel.app/#webpage",
-      url: "https://shafiqur.vercel.app",
+      "@id": "https://shafiqur.dev/#webpage",
+      url: "https://shafiqur.dev",
       name: "Md Shafiqur Rahman — AI Automation Expert | n8n, Make, Zapier",
-      isPartOf: { "@id": "https://shafiqur.vercel.app/#website" },
-      about: { "@id": "https://shafiqur.vercel.app/#person" },
+      isPartOf: { "@id": "https://shafiqur.dev/#website" },
+      about: { "@id": "https://shafiqur.dev/#person" },
       description:
         "Hire Md Shafiqur Rahman for AI automation, n8n workflows, Make scenarios, Zapier automations, AI agents, and API integrations. Save time and multiply results.",
       inLanguage: "en-US",
@@ -103,19 +103,19 @@ const schemaOrgJsonLd = {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://shafiqur.vercel.app",
+            item: "https://shafiqur.dev",
           },
         ],
       },
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://shafiqur.vercel.app/#service",
+      "@id": "https://shafiqur.dev/#service",
       name: "AI Workflow Automation Services by Md Shafiqur Rahman",
-      url: "https://shafiqur.vercel.app",
+      url: "https://shafiqur.dev",
       description:
         "End-to-end AI automation using n8n, Make, and Zapier. AI agents, API integrations, chatbots, and business process automation.",
-      provider: { "@id": "https://shafiqur.vercel.app/#person" },
+      provider: { "@id": "https://shafiqur.dev/#person" },
       areaServed: "Worldwide",
       serviceType: [
         "AI Workflow Automation",
@@ -176,7 +176,7 @@ export default function RootLayout({
           rel="icon"
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"
         />
-        <link rel="canonical" href="https://shafiqur.vercel.app/" />
+        <link rel="canonical" href="https://shafiqur.dev/" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgJsonLd) }}

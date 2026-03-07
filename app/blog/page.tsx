@@ -6,7 +6,8 @@ import Footer from "../components/Footer";
 import CustomCursor from "../components/CustomCursor";
 
 const POSTS = [
-    { slug: "automate-business-with-n8n", category: "automation", icon: "🤖", tag: "Automation", tagCls: "tag-purple", title: "How to Automate 80% of Your Business Operations Using n8n", excerpt: "Most businesses waste hundreds of hours on repetitive tasks every month. Here's how I helped a SaaS company automate lead capture, onboarding, invoicing, and reporting — all with one tool.", date: "Feb 28, 2026", readTime: "8 min read", featured: true },
+    { slug: "ai-automation-specialist-n8n", category: "n8n", icon: "🚀", tag: "n8n", tagCls: "tag-orange", title: "What Does an AI Automation Specialist Do with n8n? (Complete 2026 Guide)", excerpt: "An AI automation specialist using n8n can transform how your business runs — eliminating repetitive tasks, connecting apps intelligently, and deploying AI agents that work 24/7. Here's exactly what that looks like.", date: "Mar 8, 2026", readTime: "12 min read", featured: true },
+    { slug: "automate-business-with-n8n", category: "automation", icon: "🤖", tag: "Automation", tagCls: "tag-purple", title: "How to Automate 80% of Your Business Operations Using n8n", excerpt: "Most businesses waste hundreds of hours on repetitive tasks every month. Here's how I helped a SaaS company automate lead capture, onboarding, invoicing, and reporting — all with one tool.", date: "Feb 28, 2026", readTime: "8 min read", featured: false },
     { slug: "rag-ai-agents-explained", category: "ai", icon: "🧠", tag: "AI & LLMs", tagCls: "tag-teal", title: "RAG & AI Agents Explained: Build Smarter Automation with Context", excerpt: "What is Retrieval-Augmented Generation? How do AI agents actually work? A practical guide to building AI systems that understand your data.", date: "Feb 25, 2026", readTime: "6 min read", featured: false },
     { slug: "n8n-vs-make-vs-zapier", category: "n8n", icon: "⚡", tag: "n8n", tagCls: "tag-orange", title: "n8n vs Make vs Zapier: Which Automation Tool is Right for You?", excerpt: "A detailed comparison of the three biggest automation platforms. Pricing, features, flexibility, and when to use each one.", date: "Feb 20, 2026", readTime: "10 min read", featured: false },
     { slug: "webhook-api-integration-guide", category: "tutorial", icon: "🔗", tag: "Tutorial", tagCls: "tag-gold", title: "Complete Guide to Webhook & API Integration for Non-Developers", excerpt: "Webhooks and APIs don't have to be scary. This step-by-step guide breaks down everything you need to connect any two apps.", date: "Feb 15, 2026", readTime: "7 min read", featured: false },
@@ -33,7 +34,7 @@ export default function BlogPage() {
     const featuredPost = POSTS.find(p => p.featured)!;
     const gridPosts = POSTS.filter(p => !p.featured);
 
-    const showFeatured = (filter === "all" || filter === "automation") &&
+    const showFeatured = (filter === "all" || filter === "n8n") &&
         (search === "" || featuredPost.title.toLowerCase().includes(search.toLowerCase()) || featuredPost.excerpt.toLowerCase().includes(search.toLowerCase()));
 
     const filteredGrid = gridPosts.filter(p => {

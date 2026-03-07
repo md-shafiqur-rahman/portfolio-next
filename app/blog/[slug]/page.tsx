@@ -227,7 +227,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         <div className="testimonial-avatar" style={{ background: "rgba(108,71,255,0.15)", color: "var(--accent)", width: "44px", height: "44px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>MS</div>
                         <div className="post-author-info">
                             <span className="author-name">Md Shafiqur Rahman</span>
-                            <span className="author-role">AI Automation Expert · Spider Themes</span>
+                            <span className="author-role">AI Automation Expert</span>
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CustomCursor from "../../components/CustomCursor";
 import { getPostBySlug, getAllPosts } from "../../../lib/posts";
+import Image from "next/image";
+import shafiq from "@/public/profile.png";
 
 export async function generateStaticParams() {
     const posts = getAllPosts();
@@ -66,7 +68,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                 fontSize: "14px",
                             }}
                         >
-                            MS
+                            <Image src={shafiq} alt="Shafiq" width={44} height={44} style={{
+                                borderRadius: "50%",
+                            }} />
                         </div>
                         <div className="post-author-info">
                             <span className="author-name">Md Shafiqur Rahman</span>

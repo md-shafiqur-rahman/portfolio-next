@@ -54,9 +54,11 @@ html {
 body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Background mesh */
@@ -390,11 +392,12 @@ section[id] {
 }
 
 .about-text p {
-    font-size: 15px;
-    color: #c8c8e0;
-    line-height: 1.9;
+    font-size: 16px;
+    color: #d0d0e8;
+    line-height: 1.85;
     margin-bottom: 18px;
     letter-spacing: 0.01em;
+    font-weight: 400;
 }
 
 .about-text strong {
@@ -491,10 +494,10 @@ header {
 }
 
 .subtitle {
-    font-size: 15px;
-    color: #b8b8d8;
+    font-size: 16px;
+    color: #d0d0e8;
     font-weight: 400;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.015em;
     max-width: 500px;
     margin: 0 auto;
     line-height: 1.75;
@@ -660,9 +663,9 @@ header {
 }
 
 .card-desc {
-    font-size: 13px;
-    color: #b0b0d0;
-    line-height: 1.7;
+    font-size: 14px;
+    color: #c8c8e8;
+    line-height: 1.75;
 }
 
 /* WEEKLY PLAN / EXPERIENCE */
@@ -945,9 +948,9 @@ header {
 }
 
 .authority-desc {
-    font-size: 13px;
-    color: #b0b0d0;
-    line-height: 1.7;
+    font-size: 14px;
+    color: #c8c8e8;
+    line-height: 1.75;
 }
 
 /* TIMING TABLE / SKILLS TABLE */
@@ -2923,9 +2926,9 @@ footer {
 }
 
 .blog-hero-subtitle {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
+    font-size: 16px;
+    color: #d0d0e8;
+    line-height: 1.75;
     max-width: 560px;
     margin-bottom: 32px;
 }
@@ -2964,7 +2967,7 @@ footer {
     border: none;
     outline: none;
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     width: 100%;
 }
@@ -3081,9 +3084,9 @@ footer {
 }
 
 .featured-excerpt {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
+    font-size: 15px;
+    color: #c8c8e8;
+    line-height: 1.75;
     margin-bottom: 20px;
 }
 
@@ -3327,9 +3330,9 @@ footer {
 }
 
 .blog-card-excerpt {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
+    font-size: 14px;
+    color: #c8c8e8;
+    line-height: 1.75;
     flex: 1;
     margin-bottom: 16px;
 }
@@ -3395,9 +3398,9 @@ footer {
 }
 
 .newsletter-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
+    font-size: 15px;
+    color: #c8c8e8;
+    line-height: 1.75;
     max-width: 480px;
     margin: 0 auto 28px;
     position: relative;
@@ -3418,7 +3421,7 @@ footer {
     border-radius: 12px;
     padding: 14px 18px;
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     outline: none;
     transition: border-color 0.3s;
@@ -3486,9 +3489,9 @@ footer {
 }
 
 .post-subtitle {
-    font-size: 16px;
-    color: var(--muted);
-    line-height: 1.7;
+    font-size: 17px;
+    color: #d0d0e8;
+    line-height: 1.75;
     max-width: 640px;
     margin-bottom: 24px;
 }
@@ -3538,8 +3541,8 @@ footer {
 }
 
 .post-content p {
-    font-size: 15px;
-    color: var(--muted);
+    font-size: 16px;
+    color: #d0d0e8;
     line-height: 1.85;
     margin-bottom: 20px;
 }
@@ -3565,8 +3568,8 @@ footer {
 }
 
 .post-content li {
-    font-size: 15px;
-    color: var(--muted);
+    font-size: 16px;
+    color: #d0d0e8;
     line-height: 1.8;
     margin-bottom: 8px;
 }
@@ -3632,7 +3635,7 @@ footer {
 }
 
 .post-callout p {
-    color: var(--muted);
+    color: #c8c8e8;
     margin-bottom: 0;
 }
 
@@ -3654,10 +3657,10 @@ footer {
 }
 
 .post-cta p {
-    color: var(--muted);
-    font-size: 14px;
+    color: #c8c8e8;
+    font-size: 15px;
     margin-bottom: 20px;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 /* Share buttons */
@@ -4052,15 +4055,15 @@ section[id] {
 
 /* === Premium section text === */
 .premium-section>p {
-    color: #b8b8d8 !important;
-    font-size: 14px !important;
+    color: #d0d0e8 !important;
+    font-size: 15px !important;
     line-height: 1.8 !important;
 }
 
 /* === Showcase intro text === */
 .showcase-intro p {
-    color: #b0b0d0 !important;
-    font-size: 15px !important;
+    color: #c8c8e8 !important;
+    font-size: 16px !important;
     line-height: 1.8 !important;
 }
 

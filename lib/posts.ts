@@ -32,6 +32,7 @@ function tagColor(category: string): string {
         ai: "tag-teal",
         tutorial: "tag-gold",
         business: "tag-pink",
+        "lead generation": "tag-teal",
     };
     return map[category.toLowerCase()] ?? "tag-orange";
 }
@@ -43,6 +44,7 @@ function categoryIcon(category: string): string {
         ai: "🧠",
         tutorial: "🔗",
         business: "📈",
+        "lead generation": "🎯",
     };
     return map[category.toLowerCase()] ?? "📝";
 }
@@ -54,6 +56,7 @@ function tagLabel(category: string): string {
         ai: "AI & LLMs",
         tutorial: "Tutorial",
         business: "Business",
+        "lead generation": "Lead Gen",
     };
     return map[category.toLowerCase()] ?? category;
 }

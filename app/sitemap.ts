@@ -14,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { slug: "chatbot-customer-support", priority: 0.7 },
   ];
 
+  const projectSlugs = [
+    { slug: "ai-lead-qualification-workflow", priority: 0.9 },
+    { slug: "whatsapp-business-automation", priority: 0.8 },
+    { slug: "bi-report-automation", priority: 0.8 },
+  ];
+
   return [
     {
       url: baseUrl,
@@ -27,8 +33,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     ...blogSlugs.map(({ slug, priority }) => ({
       url: `${baseUrl}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority,
+    })),
+    ...projectSlugs.map(({ slug, priority }) => ({
+      url: `${baseUrl}/projects/${slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority,

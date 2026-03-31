@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Navbar({ blogPage = false }: { blogPage?: boolean }) {
+export default function Navbar({ blogPage = false, projectsPage = false }: { blogPage?: boolean; projectsPage?: boolean }) {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -26,7 +26,7 @@ export default function Navbar({ blogPage = false }: { blogPage?: boolean }) {
         }
     };
 
-    const prefix = blogPage ? "/" : "";
+    const prefix = (blogPage || projectsPage) ? "/" : "";
 
     return (
         <nav id="main-nav" className={scrolled ? "nav-scrolled" : ""}>
@@ -45,6 +45,7 @@ export default function Navbar({ blogPage = false }: { blogPage?: boolean }) {
                 <Link href={`${prefix}#process`} className="nav-link" onClick={(e) => !blogPage && handleNavClick(e, "#process")}>Process</Link>
                 <Link href={`${prefix}#experience`} className="nav-link" onClick={(e) => !blogPage && handleNavClick(e, "#experience")}>Experience</Link>
                 <Link href={`${prefix}#showcase`} className="nav-link" onClick={(e) => !blogPage && handleNavClick(e, "#showcase")}>Showcase</Link>
+                <Link href="/projects" className={`nav-link${projectsPage ? " active" : ""}`}>Projects</Link>
                 <Link href="/blog" className={`nav-link${blogPage ? " active" : ""}`}>Blog</Link>
                 <Link href={`${prefix}#contact`} className="nav-link cta-link" onClick={(e) => !blogPage && handleNavClick(e, "#contact")}>Let&apos;s Talk</Link>
             </div>

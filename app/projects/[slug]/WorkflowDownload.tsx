@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 
 interface WorkflowDownloadProps {
     slug: string;
-    workflowFile: string;
     title: string;
 }
 
 type TabKey = "preview" | "guide";
 
-export default function WorkflowDownload({ slug, workflowFile, title }: WorkflowDownloadProps) {
+export default function WorkflowDownload({ slug, title }: WorkflowDownloadProps) {
     const [jsonContent, setJsonContent] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -17,7 +16,7 @@ export default function WorkflowDownload({ slug, workflowFile, title }: Workflow
     const [expanded, setExpanded] = useState(false);
     const [activeTab, setActiveTab] = useState<TabKey>("preview");
 
-    const fileUrl = `/projects/${slug}/${workflowFile}`;
+    const fileUrl = `/projects/${slug}/workflow.json`;
 
     useEffect(() => {
         fetch(fileUrl)

@@ -126,11 +126,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 {/* Markdown Content */}
                 <div className="post-content" dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
 
-                {/* Workflow Download — shown only if workflowFile is set */}
-                {project.workflowFile && (
+                {/* Workflow Download — auto-shown when workflow.json exists in project folder */}
+                {project.hasWorkflow && (
                     <WorkflowDownload
                         slug={project.slug}
-                        workflowFile={project.workflowFile}
                         title={project.title}
                     />
                 )}

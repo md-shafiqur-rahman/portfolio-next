@@ -5,7 +5,6 @@ date: "2026-03-20"
 category: "lead generation"
 tools: ["n8n", "GPT-4o", "HubSpot", "Gmail", "Slack", "Webhooks"]
 results: "Response time cut from 3 hrs → 60 sec | 70% better lead accuracy"
-workflowFile: "workflow.json"
 featured: true
 published: true
 ---

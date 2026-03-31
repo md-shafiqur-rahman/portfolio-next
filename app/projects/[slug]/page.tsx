@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import CustomCursor from "../../components/CustomCursor";
 import { getProjectBySlug, getAllProjects } from "../../../lib/projects";
 import WorkflowDownload from "./WorkflowDownload";
+import ImageLightbox from "../../components/ImageLightbox";
 import shafiq from "@/public/profile.png";
 
 export async function generateStaticParams() {
@@ -104,23 +105,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
                 {/* Screenshots Gallery */}
                 {project.screenshots && project.screenshots.length > 0 && (
-                    <div className="project-gallery">
-                        <div className="project-gallery-label">
-                            <span>📸</span> Project Screenshots
-                        </div>
-                        <div className={`project-gallery-grid gallery-cols-${Math.min(project.screenshots.length, 2)}`}>
-                            {project.screenshots.map((img, idx) => (
-                                <div key={idx} className="project-gallery-img-wrap">
-                                    <Image
-                                        src={`/projects/${project.slug}/${img}`}
-                                        alt={`${project.title} screenshot ${idx + 1}`}
-                                        fill
-                                        className="project-gallery-img"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <ImageLightbox
+                        images={project.screenshots}
+                        projectSlug={project.slug}
+                        projectTitle={project.title}
+                    />
                 )}
 
                 {/* Markdown Content */}

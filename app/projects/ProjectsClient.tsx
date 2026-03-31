@@ -131,10 +131,11 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
                         <Link href={`/projects/${featuredProject.slug}`} className="project-featured-card">
                             <div className="featured-badge">⭐ Featured Project</div>
 
-                            {featuredProject.screenshots && featuredProject.screenshots.length > 0 ? (
+                            {/* Cover image: prefer thumbnail, fallback to first screenshot */}
+                            {(featuredProject.thumbnail || (featuredProject.screenshots && featuredProject.screenshots.length > 0)) ? (
                                 <div className="project-featured-img-wrap">
                                     <Image
-                                        src={`/projects/${featuredProject.slug}/${featuredProject.screenshots[0]}`}
+                                        src={`/projects/${featuredProject.slug}/${featuredProject.thumbnail ?? featuredProject.screenshots[0]}`}
                                         alt={featuredProject.title}
                                         fill
                                         className="project-featured-img"
@@ -186,11 +187,11 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
                         {filteredGrid.map((project) => (
                             <article key={project.slug} className="project-card">
                                 <Link href={`/projects/${project.slug}`} className="project-card-link">
-                                    {/* Screenshot or icon placeholder */}
-                                    {project.screenshots && project.screenshots.length > 0 ? (
+                                    {/* Cover image: prefer thumbnail, fallback to first screenshot */}
+                                    {(project.thumbnail || (project.screenshots && project.screenshots.length > 0)) ? (
                                         <div className="project-card-img-wrap">
                                             <Image
-                                                src={`/projects/${project.slug}/${project.screenshots[0]}`}
+                                                src={`/projects/${project.slug}/${project.thumbnail ?? project.screenshots[0]}`}
                                                 alt={project.title}
                                                 fill
                                                 className="project-card-img"

@@ -18,7 +18,8 @@ export interface ProjectMeta {
     tagCls: string;
     icon: string;
     tools: string[];
-    screenshots: string[];    // auto-detected from project folder
+    screenshots: string[];    // auto-detected from project folder (excludes thumbnail.*)
+    thumbnail?: string;       // thumbnail.* — card cover only, not in gallery
     hasWorkflow: boolean;     // true if workflow.json exists in project folder
     featured: boolean;
     published: boolean;
@@ -85,7 +86,7 @@ function tagLabel(category: string): string {
  *  - workflow.json existence
  * Returns paths relative to /public/projects/<slug>/  (used in <img src>)
  */
-function detectAssets(slug: string): { screenshots: string[]; hasWorkflow: boolean } {
+function detectAssets(slug: string): { screenshots: string[]; hasWorkflow: boolean; thumbnail?: string } {
     // Assets live in public/projects/<slug>/
     const assetDir = path.join(process.cwd(), "public", "projects", slug);
 
@@ -95,14 +96,23 @@ function detectAssets(slug: string): { screenshots: string[]; hasWorkflow: boole
 
     const files = fs.readdirSync(assetDir).sort(); // alphabetical
 
+    // thumbnail.* → card cover only, excluded from gallery
+    const THUMB_NAMES = ["thumbnail.png", "thumbnail.jpg", "thumbnail.jpeg", "thumbnail.webp"];
+    const thumbnailFile = files.find((f) => THUMB_NAMES.includes(f.toLowerCase()));
+
+    // screenshots → all images except _ prefix and thumbnail files
     const screenshots = files.filter((f) => {
         const ext = path.extname(f).toLowerCase();
-        return IMAGE_EXTS.includes(ext) && !f.startsWith("_");
+        return (
+            IMAGE_EXTS.includes(ext) &&
+            !f.startsWith("_") &&
+            !THUMB_NAMES.includes(f.toLowerCase())
+        );
     });
 
     const hasWorkflow = files.includes("workflow.json");
 
-    return { screenshots, hasWorkflow };
+    return { screenshots, hasWorkflow, thumbnail: thumbnailFile };
 }
 
 /**
@@ -150,7 +160,7 @@ export function getAllProjects(): ProjectMeta[] {
             const { data } = matter(fileContent);
 
             const category = (data.category ?? "automation").toLowerCase();
-            const { screenshots, hasWorkflow } = detectAssets(slug);
+            const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug);
 
             return {
                 slug,
@@ -167,6 +177,7 @@ export function getAllProjects(): ProjectMeta[] {
                 icon:   data.icon   ?? categoryIcon(category),
                 tools:  Array.isArray(data.tools) ? data.tools : [],
                 screenshots,
+                thumbnail,
                 hasWorkflow,
                 featured:  data.featured  === true,
                 published: data.published !== false,
@@ -194,7 +205,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     const contentHtml = processed.toString();
 
     const category = (data.category ?? "automation").toLowerCase();
-    const { screenshots, hasWorkflow } = detectAssets(slug);
+    const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug);
 
     return {
         slug,
@@ -211,6 +222,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         icon:   data.icon   ?? categoryIcon(category),
         tools:  Array.isArray(data.tools) ? data.tools : [],
         screenshots,
+        thumbnail,
         hasWorkflow,
         featured:  data.featured  === true,
         published: data.published !== false,

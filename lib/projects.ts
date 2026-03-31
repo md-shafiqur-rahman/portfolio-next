@@ -82,11 +82,15 @@ function tagLabel(category: string): string {
 
 /**
  * Read a project folder and auto-detect:
- *  - screenshots (any image files except those starting with _)
+ *  - screenshots (any image files except those starting with _ or thumbnail.*)
  *  - workflow.json existence
- * Returns paths relative to /public/projects/<slug>/  (used in <img src>)
+ *  - thumbnail (thumbnail.* file)
+ * If manualOrder is provided, screenshots are returned in that specific order.
  */
-function detectAssets(slug: string): { screenshots: string[]; hasWorkflow: boolean; thumbnail?: string } {
+function detectAssets(
+    slug: string,
+    manualOrder?: string[]
+): { screenshots: string[]; hasWorkflow: boolean; thumbnail?: string } {
     // Assets live in public/projects/<slug>/
     const assetDir = path.join(process.cwd(), "public", "projects", slug);
 
@@ -100,7 +104,15 @@ function detectAssets(slug: string): { screenshots: string[]; hasWorkflow: boole
     const THUMB_NAMES = ["thumbnail.png", "thumbnail.jpg", "thumbnail.jpeg", "thumbnail.webp"];
     const thumbnailFile = files.find((f) => THUMB_NAMES.includes(f.toLowerCase()));
 
-    // screenshots → all images except _ prefix and thumbnail files
+    const hasWorkflow = files.includes("workflow.json");
+
+    // If manual order is specified in frontmatter, use it (only include files that exist)
+    if (manualOrder && manualOrder.length > 0) {
+        const screenshots = manualOrder.filter((f) => files.includes(f));
+        return { screenshots, hasWorkflow, thumbnail: thumbnailFile };
+    }
+
+    // Otherwise auto-detect: all images except _ prefix and thumbnail files
     const screenshots = files.filter((f) => {
         const ext = path.extname(f).toLowerCase();
         return (
@@ -109,8 +121,6 @@ function detectAssets(slug: string): { screenshots: string[]; hasWorkflow: boole
             !THUMB_NAMES.includes(f.toLowerCase())
         );
     });
-
-    const hasWorkflow = files.includes("workflow.json");
 
     return { screenshots, hasWorkflow, thumbnail: thumbnailFile };
 }
@@ -160,7 +170,8 @@ export function getAllProjects(): ProjectMeta[] {
             const { data } = matter(fileContent);
 
             const category = (data.category ?? "automation").toLowerCase();
-            const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug);
+            const manualOrder = Array.isArray(data.screenshots) ? data.screenshots : undefined;
+            const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug, manualOrder);
 
             return {
                 slug,
@@ -205,7 +216,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     const contentHtml = processed.toString();
 
     const category = (data.category ?? "automation").toLowerCase();
-    const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug);
+    const manualOrder = Array.isArray(data.screenshots) ? data.screenshots : undefined;
+    const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug, manualOrder);
 
     return {
         slug,

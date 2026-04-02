@@ -10,7 +10,7 @@ screenshots:
   - workflow-ss-2.png
   - system-output-ss-1.png
   - system-output-ss-2.png
-featured: true
+featured: false
 published: true
 ---
 

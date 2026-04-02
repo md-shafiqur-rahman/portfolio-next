@@ -6,10 +6,12 @@ category: "automation"
 tools: ["n8n", "OpenAI", "Firecrawl API", "Apify API", "Airtable"]
 results: "Automated job tracking across multiple sources | AI-based new job detection | Zero manual monitoring"
 screenshots:
-  - workflow-ss-1.png
-  - workflow-ss-2.png
-  - system-output-ss-1.png
-  - system-output-ss-2.png
+  workflow:
+    - workflow-ss-1.png
+    - workflow-ss-2.png
+  output:
+    - system-output-ss-1.png
+    - system-output-ss-2.png
 featured: false
 published: true
 ---

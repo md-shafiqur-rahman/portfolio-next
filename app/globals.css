@@ -4634,6 +4634,63 @@ section[id]+div {
     margin: 0 0 48px;
 }
 
+/* ── Grouped gallery sections ─────────────────────────────────────── */
+.gallery-group {
+    margin-bottom: 40px;
+}
+
+.gallery-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Section header */
+.gallery-section-header {
+    margin-bottom: 14px;
+}
+
+.gallery-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 5px 14px 5px 10px;
+    border: 1px solid;
+    margin-bottom: 6px;
+}
+
+/* Workflow badge — purple */
+.gallery-badge-workflow {
+    background: rgba(124, 92, 255, 0.12);
+    border-color: rgba(124, 92, 255, 0.35);
+    color: rgba(190, 170, 255, 0.95);
+}
+
+/* Output badge — teal/green */
+.gallery-badge-output {
+    background: rgba(0, 228, 184, 0.1);
+    border-color: rgba(0, 228, 184, 0.3);
+    color: var(--accent3);
+}
+
+.gallery-section-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+    padding-left: 2px;
+}
+
+/* Divider line between sections */
+.gallery-group + .gallery-group {
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 8px;
+}
+
+/* Legacy flat label */
 .project-gallery-label {
     display: flex;
     align-items: center;
@@ -4674,7 +4731,71 @@ section[id]+div {
     object-fit: cover;
 }
 
-/* Fade-in animation (reusing blog pattern) */
+/* ── Lightbox type badge (shown in counter) ───────────────────────── */
+.lightbox-counter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lightbox-counter-nums {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+}
+
+.lightbox-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 3px 10px;
+    border: 1px solid;
+}
+
+.lightbox-type-workflow {
+    background: rgba(124, 92, 255, 0.2);
+    border-color: rgba(124, 92, 255, 0.5);
+    color: rgba(200, 180, 255, 0.95);
+}
+
+.lightbox-type-output {
+    background: rgba(0, 228, 184, 0.15);
+    border-color: rgba(0, 228, 184, 0.4);
+    color: var(--accent3);
+}
+
+/* ── Thumbnail strip enhancements ────────────────────────────────── */
+.lightbox-thumb-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.lightbox-thumb-divider {
+    font-size: 14px;
+    opacity: 0.8;
+    user-select: none;
+    cursor: default;
+}
+
+/* Subtle tinted borders per type */
+.lightbox-thumb-workflow.lightbox-thumb-active {
+    border-color: rgba(124, 92, 255, 0.8) !important;
+    box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.35);
+}
+
+.lightbox-thumb-output.lightbox-thumb-active {
+    border-color: rgba(0, 228, 184, 0.8) !important;
+    box-shadow: 0 0 0 2px rgba(0, 228, 184, 0.3);
+}
+
+
 .project-card.fade-in,
 .project-featured-card.fade-in {
     opacity: 0;

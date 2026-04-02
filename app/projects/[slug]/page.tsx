@@ -107,6 +107,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 {project.screenshots && project.screenshots.length > 0 && (
                     <ImageLightbox
                         images={project.screenshots}
+                        screenshotGroups={project.screenshotGroups}
                         projectSlug={project.slug}
                         projectTitle={project.title}
                     />

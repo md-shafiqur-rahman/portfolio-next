@@ -8,6 +8,11 @@ import remarkHtml from "remark-html";
 const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
 const IMAGE_EXTS = [".png", ".jpg", ".jpeg", ".webp", ".gif"];
 
+export interface ScreenshotGroups {
+    workflow: string[];   // n8n / automation workflow diagrams
+    output: string[];     // live results / system output screenshots
+}
+
 export interface ProjectMeta {
     slug: string;
     title: string;
@@ -18,9 +23,10 @@ export interface ProjectMeta {
     tagCls: string;
     icon: string;
     tools: string[];
-    screenshots: string[];    // auto-detected from project folder (excludes thumbnail.*)
-    thumbnail?: string;       // thumbnail.* — card cover only, not in gallery
-    hasWorkflow: boolean;     // true if workflow.json exists in project folder
+    screenshots: string[];          // flat list (legacy / card cover)
+    screenshotGroups: ScreenshotGroups; // categorised groups for detail page
+    thumbnail?: string;             // thumbnail.* — card cover only, not in gallery
+    hasWorkflow: boolean;           // true if workflow.json exists in project folder
     featured: boolean;
     published: boolean;
     results?: string;
@@ -81,21 +87,25 @@ function tagLabel(category: string): string {
 }
 
 /**
- * Read a project folder and auto-detect:
- *  - screenshots (any image files except those starting with _ or thumbnail.*)
- *  - workflow.json existence
- *  - thumbnail (thumbnail.* file)
- * If manualOrder is provided, screenshots are returned in that specific order.
+ * Read a project folder and build screenshot lists.
+ *
+ * Frontmatter can supply EITHER:
+ *   A) Grouped:  screenshots: { workflow: [...], output: [...] }
+ *   B) Flat:     screenshots: ["a.png", "b.png"]   (legacy / single section)
+ *
+ * If neither is provided, images are auto-detected alphabetically.
  */
 function detectAssets(
     slug: string,
-    manualOrder?: string[]
-): { screenshots: string[]; hasWorkflow: boolean; thumbnail?: string } {
+    rawScreenshots?: unknown  // raw value from gray-matter
+): { screenshots: string[]; screenshotGroups: ScreenshotGroups; hasWorkflow: boolean; thumbnail?: string } {
     // Assets live in public/projects/<slug>/
     const assetDir = path.join(process.cwd(), "public", "projects", slug);
 
+    const empty: ScreenshotGroups = { workflow: [], output: [] };
+
     if (!fs.existsSync(assetDir)) {
-        return { screenshots: [], hasWorkflow: false };
+        return { screenshots: [], screenshotGroups: empty, hasWorkflow: false };
     }
 
     const files = fs.readdirSync(assetDir).sort(); // alphabetical
@@ -106,13 +116,31 @@ function detectAssets(
 
     const hasWorkflow = files.includes("workflow.json");
 
-    // If manual order is specified in frontmatter, use it (only include files that exist)
-    if (manualOrder && manualOrder.length > 0) {
-        const screenshots = manualOrder.filter((f) => files.includes(f));
-        return { screenshots, hasWorkflow, thumbnail: thumbnailFile };
+    // ── Case A: grouped object { workflow: [...], output: [...] } ──────────
+    if (rawScreenshots && typeof rawScreenshots === "object" && !Array.isArray(rawScreenshots)) {
+        const raw = rawScreenshots as Record<string, unknown>;
+        const workflowImgs = (Array.isArray(raw.workflow) ? raw.workflow as string[] : [])
+            .filter((f) => files.includes(f));
+        const outputImgs = (Array.isArray(raw.output) ? raw.output as string[] : [])
+            .filter((f) => files.includes(f));
+
+        const screenshotGroups: ScreenshotGroups = { workflow: workflowImgs, output: outputImgs };
+        const screenshots = [...workflowImgs, ...outputImgs];
+        return { screenshots, screenshotGroups, hasWorkflow, thumbnail: thumbnailFile };
     }
 
-    // Otherwise auto-detect: all images except _ prefix and thumbnail files
+    // ── Case B: flat array (legacy)  ─────────────────────────────────────
+    if (Array.isArray(rawScreenshots) && rawScreenshots.length > 0) {
+        const screenshots = (rawScreenshots as string[]).filter((f) => files.includes(f));
+        return {
+            screenshots,
+            screenshotGroups: { workflow: screenshots, output: [] },
+            hasWorkflow,
+            thumbnail: thumbnailFile,
+        };
+    }
+
+    // ── Case C: auto-detect alphabetically ───────────────────────────────
     const screenshots = files.filter((f) => {
         const ext = path.extname(f).toLowerCase();
         return (
@@ -122,7 +150,12 @@ function detectAssets(
         );
     });
 
-    return { screenshots, hasWorkflow, thumbnail: thumbnailFile };
+    return {
+        screenshots,
+        screenshotGroups: { workflow: screenshots, output: [] },
+        hasWorkflow,
+        thumbnail: thumbnailFile,
+    };
 }
 
 /**
@@ -170,8 +203,7 @@ export function getAllProjects(): ProjectMeta[] {
             const { data } = matter(fileContent);
 
             const category = (data.category ?? "automation").toLowerCase();
-            const manualOrder = Array.isArray(data.screenshots) ? data.screenshots : undefined;
-            const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug, manualOrder);
+            const { screenshots, screenshotGroups, hasWorkflow, thumbnail } = detectAssets(slug, data.screenshots);
 
             return {
                 slug,
@@ -188,6 +220,7 @@ export function getAllProjects(): ProjectMeta[] {
                 icon:   data.icon   ?? categoryIcon(category),
                 tools:  Array.isArray(data.tools) ? data.tools : [],
                 screenshots,
+                screenshotGroups,
                 thumbnail,
                 hasWorkflow,
                 featured:  data.featured  === true,
@@ -216,8 +249,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     const contentHtml = processed.toString();
 
     const category = (data.category ?? "automation").toLowerCase();
-    const manualOrder = Array.isArray(data.screenshots) ? data.screenshots : undefined;
-    const { screenshots, hasWorkflow, thumbnail } = detectAssets(slug, manualOrder);
+    const { screenshots, screenshotGroups, hasWorkflow, thumbnail } = detectAssets(slug, data.screenshots);
 
     return {
         slug,
@@ -234,6 +266,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         icon:   data.icon   ?? categoryIcon(category),
         tools:  Array.isArray(data.tools) ? data.tools : [],
         screenshots,
+        screenshotGroups,
         thumbnail,
         hasWorkflow,
         featured:  data.featured  === true,

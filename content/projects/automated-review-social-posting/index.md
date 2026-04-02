@@ -6,13 +6,15 @@ category: "automation"
 tools: ["n8n", "Gemini", "RSS Feed", "Apify API", "HTML", "CSS", "Facebook API"]
 results: "Automated review monitoring | AI-based sentiment filtering | Dynamic testimonial generation | Social media posting with proof links"
 screenshots:
-  - 1-part.png
-  - 2-part.png
-  - 3-part.png
-  - 4-part.png
-  - 1-output.png
-  - 2-output.png
-  - 3-output.png
+   workflow:
+   - 1-part.png
+   - 2-part.png
+   - 3-part.png
+   - 4-part.png
+   output:
+   - 1-output.png
+   - 2-output.png
+   - 3-output.png
 featured: true
 published: true
 ---

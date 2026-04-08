@@ -1,237 +1,25 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
 import ParticleCanvas from "./components/ParticleCanvas";
+import CursorGlow from "./components/CursorGlow";
+import ScrollToTop from "./components/ScrollToTop";
+import MobileBottomNav from "./components/MobileBottomNav";
+import HeroTitle from "./components/HeroTitle";
+import Counter from "./components/Counter";
+import Subtitle from "./components/Subtitle";
+import VideoCard from "./components/VideoCard";
+import HomeInteractions from "./components/HomeInteractions";
 
-// ── Cursor Glow ──────────────────────────────────────────────────────────────
-function CursorGlow() {
-  useEffect(() => {
-    const el = document.getElementById("cursor-glow");
-    if (!el) return;
-    let mx = 0, my = 0, gx = 0, gy = 0;
-    const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
-    document.addEventListener("mousemove", onMove);
-    let raf: number;
-    const animate = () => {
-      gx += (mx - gx) * 0.08; gy += (my - gy) * 0.08;
-      el.style.left = gx + "px"; el.style.top = gy + "px";
-      raf = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => { document.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
-  }, []);
-  return <div id="cursor-glow"></div>;
-}
-
-// ── Scroll To Top ─────────────────────────────────────────────────────────────
-function ScrollToTop() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <button className={`scroll-to-top${visible ? " visible" : ""}`} id="scroll-to-top" aria-label="Scroll to top"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"></path></svg>
-    </button>
-  );
-}
-
-// ── Mobile Bottom Nav ─────────────────────────────────────────────────────────
-function MobileBottomNav() {
-  const [active, setActive] = useState("hero");
-  useEffect(() => {
-    const map: Record<string, string> = { hero: "home", about: "about", services: "services", showcase: "work", contact: "contact" };
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting && map[e.target.id]) setActive(map[e.target.id]); });
-    }, { rootMargin: "-30% 0px -60% 0px", threshold: 0 });
-    document.querySelectorAll("section[id], header[id]").forEach(s => obs.observe(s));
-    return () => obs.disconnect();
-  }, []);
-  const link = (id: string, label: string, icon: React.ReactNode, isCta = false) => (
-    <a href={`#${id === "home" ? "hero" : id === "work" ? "showcase" : id}`}
-      className={`mbn-link${isCta ? " mbn-cta" : ""}${active === id && !isCta ? " active" : ""}`}
-      onClick={(e) => { e.preventDefault(); const t = document.querySelector(`#${id === "home" ? "hero" : id === "work" ? "showcase" : id}`); if (t) window.scrollTo({ top: (t as HTMLElement).getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" }); }}>
-      {icon}{label}
-    </a>
-  );
-  return (
-    <nav className="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobile bottom navigation">
-      <div className="mobile-bottom-nav-inner">
-        {link("home", "Home", <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>)}
-        {link("about", "About", <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M20 21a8 8 0 1 0-16 0" /></svg>)}
-        {link("services", "Services", <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /></svg>)}
-        {link("work", "Work", <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg>)}
-        {link("contact", "Talk", <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.69 13 19.5 19.5 0 0 1 1.62 3.62 2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z" /></svg>, true)}
-      </div>
-    </nav>
-  );
-}
-
-// ── Hero Rotating Title ───────────────────────────────────────────────────────
-function HeroTitle() {
-  const [current, setCurrent] = useState(0);
-  const [exiting, setExiting] = useState(-1);
-  const slides = [
-    { text: ["Intelligent", "Automation", "Expert"], gradient: "linear-gradient(135deg, #ffffff 30%, #6c47ff 100%)" },
-    { text: ["AI Workflow", "Architect"], gradient: "linear-gradient(135deg, #00d4aa 20%, #38bdf8 100%)" },
-  ];
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setExiting(current);
-      const next = (current + 1) % slides.length;
-      setCurrent(next);
-      setTimeout(() => setExiting(-1), 650);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [current]);
-  return (
-    <div className="hero-title-wrapper">
-      <h1 className="hero-rotating-title">
-        {slides.map((slide, i) => (
-          <span key={i} className={`title-slide${i === current ? " active" : ""}${i === exiting ? " exit" : ""}`}
-            style={{ background: slide.gradient, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-            {slide.text.map((line, j) => (<span key={j}>{line}{j < slide.text.length - 1 && <br />}</span>))}
-          </span>
-        ))}
-      </h1>
-    </div>
-  );
-}
-
-// ── Counter Animation ─────────────────────────────────────────────────────────
-function Counter({ count, suffix }: { count: number; suffix: string }) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started.current) {
-        started.current = true;
-        const dur = 1800, step = 16, inc = count / (dur / step);
-        let cur = 0;
-        const t = setInterval(() => { cur += inc; if (cur >= count) { cur = count; clearInterval(t); } setVal(Math.floor(cur)); }, step);
-      }
-    }, { threshold: 0.5 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [count]);
-  return <span ref={ref} className="count-up">{val}{suffix}</span>;
-}
-
-// ── Fade In Observer ──────────────────────────────────────────────────────────
-function useFadeIn() {
-  useEffect(() => {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-    document.querySelectorAll(".strategy-card, .day-card, .hook-card, .authority-item, .premium-feature, .highlight-item, .testimonial-card").forEach(el => {
-      el.classList.add("fade-in"); obs.observe(el);
-    });
-    const revObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); revObs.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: "0px 0px -60px 0px" });
-    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right, .section-label, .section-title").forEach((el, i) => {
-      el.classList.add("reveal-up");
-      (el as HTMLElement).style.transitionDelay = (i * 0.05) + "s";
-      revObs.observe(el);
-    });
-    return () => { obs.disconnect(); revObs.disconnect(); };
-  }, []);
-}
-
-// ── Typewriter effect ─────────────────────────────────────────────────────────
-function Subtitle() {
-  const [typed, setTyped] = useState("");
-  const afterText = " — I build smart, scalable automation systems using n8n, Make, Zapier, APIs, and AI Agents that save time and multiply results for businesses.";
-  useEffect(() => {
-    let i = 0;
-    const t = setTimeout(() => {
-      const interval = setInterval(() => {
-        if (i < afterText.length) { setTyped(afterText.slice(0, ++i)); } else clearInterval(interval);
-      }, 26);
-      return () => clearInterval(interval);
-    }, 900);
-    return () => clearTimeout(t);
-  }, []);
-  return (
-    <p className="subtitle" id="hero-subtitle">
-      I&apos;m <strong style={{ color: "var(--text)" }}>Md Shafiqur Rahman</strong>{typed}
-    </p>
-  );
-}
-
-// ── Video Card ──────────────────────────────────────────────────────────────
-function VideoCard({ videoId, tag, tagClass, title, desc }: { videoId: string; tag: string; tagClass: string; title: string; desc: string }) {
-  const [loaded, setLoaded] = useState(false);
-  return (
-    <div className="video-card" data-video-id={videoId}>
-      {!loaded ? (
-        <div className="video-thumbnail" onClick={() => setLoaded(true)} style={{ cursor: "pointer" }}>
-          <img src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} alt={title}
-            onError={(e) => { (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`; }} />
-          <div className="play-overlay"><div className="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></div></div>
-          <div className="video-duration">Demo</div>
-        </div>
-      ) : (
-        <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-          frameBorder="0" allowFullScreen allow="autoplay; encrypted-media; picture-in-picture" style={{ width: "100%", aspectRatio: "16/9", display: "block", border: "none" }} />
-      )}
-      <div className="video-info">
-        <div className={`video-tag ${tagClass}`}>{tag}</div>
-        <div className="video-title">{title}</div>
-        <div className="video-desc">{desc}</div>
-      </div>
-    </div>
-  );
-}
-
-// ── Main Page ─────────────────────────────────────────────────────────────────
+// ── Main Page (Server Component — all text content is server-rendered for SEO) ──
 export default function HomePage() {
-  useFadeIn();
-
-  // Magnetic button effect
-  useEffect(() => {
-    const btns = document.querySelectorAll<HTMLElement>(".btn-primary, .btn-secondary, .btn-book-call");
-    const handlers: Array<{ el: HTMLElement; move: (e: MouseEvent) => void; leave: () => void }> = [];
-    btns.forEach(btn => {
-      const move = (e: MouseEvent) => {
-        const r = btn.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.25;
-        const y = (e.clientY - r.top - r.height / 2) * 0.25;
-        btn.style.transform = `translate(${x}px, ${y}px) translateY(-2px)`;
-      };
-      const leave = () => {
-        btn.style.transition = "transform 0.4s cubic-bezier(0.4,0,0.2,1)";
-        btn.style.transform = "";
-        setTimeout(() => { btn.style.transition = ""; }, 400);
-      };
-      btn.addEventListener("mousemove", move);
-      btn.addEventListener("mouseleave", leave);
-      handlers.push({ el: btn, move, leave });
-    });
-    return () => handlers.forEach(({ el, move, leave }) => { el.removeEventListener("mousemove", move); el.removeEventListener("mouseleave", leave); });
-  }, []);
-
-  const scrollTo = (id: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    const t = document.querySelector(id);
-    if (t) window.scrollTo({ top: (t as HTMLElement).getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-  };
-
   return (
     <>
       <CursorGlow />
       <ParticleCanvas />
       <CustomCursor />
+      <HomeInteractions />
 
       <div className="container">
         <Navbar />
@@ -244,7 +32,7 @@ export default function HomePage() {
               <HeroTitle />
               <Subtitle />
               <div className="hero-cta">
-                <a href="#contact" className="btn-primary" id="hero-cta-contact" onClick={scrollTo("#contact")}>Book a Free Strategy Call</a>
+                <a href="#contact" className="btn-primary" id="hero-cta-contact">Book a Free Strategy Call</a>
                 <a href="https://www.linkedin.com/in/automation-by-shafiq/" target="_blank" rel="noopener" className="btn-secondary" id="hero-cta-linkedin">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
                   Connect on LinkedIn

@@ -1,24 +1,25 @@
 import { MetadataRoute } from "next";
+import { getAllPosts } from "../lib/posts";
+import { getAllProjects } from "../lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://shafiqur.dev";
 
-  const blogSlugs = [
-    { slug: "ai-automation-specialist-n8n", priority: 0.9 },
-    { slug: "automate-business-with-n8n", priority: 0.8 },
-    { slug: "rag-ai-agents-explained", priority: 0.7 },
-    { slug: "n8n-vs-make-vs-zapier", priority: 0.7 },
-    { slug: "webhook-api-integration-guide", priority: 0.7 },
-    { slug: "automation-roi-calculator", priority: 0.7 },
-    { slug: "crm-automation-hubspot-n8n", priority: 0.7 },
-    { slug: "chatbot-customer-support", priority: 0.7 },
-  ];
+  // Dynamic: read all published blog posts from content/blog/
+  const blogEntries = getAllPosts().map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: post.featured ? 0.9 : 0.7,
+  }));
 
-  const projectSlugs = [
-    { slug: "ai-lead-qualification-workflow", priority: 0.9 },
-    { slug: "whatsapp-business-automation", priority: 0.8 },
-    { slug: "bi-report-automation", priority: 0.8 },
-  ];
+  // Dynamic: read all published projects from content/projects/
+  const projectEntries = getAllProjects().map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: project.featured ? 0.9 : 0.8,
+  }));
 
   return [
     {
@@ -39,17 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...blogSlugs.map(({ slug, priority }) => ({
-      url: `${baseUrl}/blog/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
-    ...projectSlugs.map(({ slug, priority }) => ({
-      url: `${baseUrl}/projects/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
+    ...blogEntries,
+    ...projectEntries,
   ];
 }

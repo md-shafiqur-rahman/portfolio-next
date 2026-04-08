@@ -7,11 +7,17 @@
     --accent2: #ff7849;
     --accent3: #00e4b8;
     --text: #f0f0f8;
-    --muted: #9898c0;
+    --muted: #a8a8cc;
     --tag-bg: #18182a;
     --glow-purple: rgba(124, 92, 255, 0.4);
     --glow-teal: rgba(0, 228, 184, 0.4);
     --glow-orange: rgba(255, 120, 73, 0.4);
+
+    /* Typography tokens — consumed by next/font CSS variables */
+    --font-body: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: var(--font-serif), 'Instrument Serif', Georgia, serif;
+    --font-code: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
+    --font-display: var(--font-syne), 'Syne', var(--font-inter), sans-serif;
 }
 
 /* ===== CURSOR GLOW ===== */
@@ -54,11 +60,17 @@ html {
 body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
 /* Background mesh */
@@ -237,7 +249,7 @@ nav#main-nav.nav-scrolled {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     color: rgba(220, 205, 255, 0.95);
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     font-size: 14px;
     font-weight: 700;
     padding: 14px 28px;
@@ -269,7 +281,7 @@ nav#main-nav.nav-scrolled {
     gap: 8px;
     background: transparent;
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     font-size: 14px;
     font-weight: 600;
     padding: 14px 24px;
@@ -392,11 +404,11 @@ section[id] {
 }
 
 .about-text p {
-    font-size: 16px;
-    color: #d0d0e8;
-    line-height: 1.85;
-    margin-bottom: 18px;
-    letter-spacing: 0.01em;
+    font-size: 16.5px;
+    color: #d4d4ec;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    letter-spacing: 0.015em;
     font-weight: 400;
 }
 
@@ -429,7 +441,7 @@ section[id] {
 
 .highlight-num {
     display: block;
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 36px;
     font-weight: 700;
     line-height: 1;
@@ -437,12 +449,12 @@ section[id] {
 }
 
 .highlight-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--muted);
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 /* ===== HEADER (legacy - used in section titles) ===== */
@@ -494,13 +506,13 @@ header {
 }
 
 .subtitle {
-    font-size: 16px;
-    color: #d0d0e8;
+    font-size: 16.5px;
+    color: #d4d4ec;
     font-weight: 400;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.02em;
     max-width: 500px;
     margin: 0 auto;
-    line-height: 1.75;
+    line-height: 1.8;
     /* Reserve space upfront — prevents content jump during typewriter animation */
     contain: layout style;
 }
@@ -581,9 +593,10 @@ header {
 }
 
 .section-title {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(26px, 4vw, 40px);
-    line-height: 1.15;
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
     margin-bottom: 36px;
     background: linear-gradient(135deg, #ffffff 0%, #d8cfff 60%, var(--accent3) 100%);
     -webkit-background-clip: text;
@@ -655,17 +668,18 @@ header {
 }
 
 .card-title {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     margin-bottom: 10px;
     color: #f0f0f8;
 }
 
 .card-desc {
-    font-size: 14px;
-    color: #c8c8e8;
-    line-height: 1.75;
+    font-size: 14.5px;
+    color: #d0d0ea;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
 }
 
 /* WEEKLY PLAN / EXPERIENCE */
@@ -751,16 +765,16 @@ header {
 }
 
 .post-hook {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text);
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 4px;
 }
 
 .post-note {
     font-size: 11px;
     color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
 }
 
 .time-badge {
@@ -770,7 +784,7 @@ header {
     color: var(--muted);
     padding: 2px 7px;
     border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     flex-shrink: 0;
     height: fit-content;
     margin-top: 4px;
@@ -801,7 +815,7 @@ header {
 }
 
 .hook-number {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     font-size: 11px;
     color: var(--accent);
     font-weight: 700;
@@ -810,9 +824,10 @@ header {
 }
 
 .hook-text {
-    font-family: 'Instrument Serif', serif;
-    font-size: 17px;
-    line-height: 1.5;
+    font-family: var(--font-heading);
+    font-size: 17.5px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
     color: var(--text);
     margin-bottom: 10px;
 }
@@ -820,7 +835,7 @@ header {
 .hook-context {
     font-size: 11px;
     color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     line-height: 1.5;
 }
 
@@ -896,9 +911,10 @@ header {
 }
 
 .pf-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
 }
 
 /* AUTHORITY / PROCESS SECTION */
@@ -940,7 +956,7 @@ header {
 }
 
 .authority-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 8px;
     color: #f0f0f8;
@@ -948,9 +964,10 @@ header {
 }
 
 .authority-desc {
-    font-size: 14px;
-    color: #c8c8e8;
-    line-height: 1.75;
+    font-size: 14.5px;
+    color: #d0d0ea;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
 }
 
 /* TIMING TABLE / SKILLS TABLE */
@@ -995,7 +1012,7 @@ header {
 }
 
 .timing-time {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     color: var(--accent3);
     font-size: 14px;
     letter-spacing: 2px;
@@ -1028,7 +1045,7 @@ footer {
     gap: 8px;
     background: linear-gradient(135deg, #25D366, #128C7E);
     color: #fff;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     font-size: 14px;
     font-weight: 600;
     padding: 14px 24px;
@@ -1057,7 +1074,7 @@ footer {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     color: #fff;
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     font-size: 15px;
     font-weight: 700;
     padding: 16px 36px;
@@ -1126,7 +1143,7 @@ footer {
 .trust-badge-rating {
     font-size: 11px;
     color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
 }
 
 .fiverr-badge {
@@ -1712,7 +1729,7 @@ footer {
     background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(4px);
     color: #fff;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     font-size: 11px;
     font-weight: 600;
     padding: 3px 8px;
@@ -1791,7 +1808,7 @@ footer {
     position: absolute;
     top: -10px;
     left: 16px;
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 90px;
     color: var(--accent);
     opacity: 0.12;
@@ -1813,9 +1830,10 @@ footer {
 }
 
 .testimonial-text {
-    font-family: 'Instrument Serif', serif;
-    font-size: 15px;
-    line-height: 1.7;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
     color: var(--text);
     flex: 1;
     font-style: italic;
@@ -1853,7 +1871,7 @@ footer {
 .testimonial-role {
     font-size: 11px;
     color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
 }
 
 .testimonial-tag {
@@ -2329,9 +2347,10 @@ footer {
     top: 0;
     left: 0;
     right: 0;
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(40px, 6vw, 68px);
-    line-height: 1.05;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
     opacity: 0;
     transform: translateX(-60px);
     transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
@@ -2469,7 +2488,7 @@ footer {
     gap: 3px;
     text-decoration: none;
     color: var(--muted);
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -2915,7 +2934,7 @@ footer {
 }
 
 .blog-hero-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(36px, 5.5vw, 60px);
     line-height: 1.1;
     margin-bottom: 16px;
@@ -2926,9 +2945,9 @@ footer {
 }
 
 .blog-hero-subtitle {
-    font-size: 16px;
-    color: #d0d0e8;
-    line-height: 1.75;
+    font-size: 16.5px;
+    color: #d4d4ec;
+    line-height: 1.8;
     max-width: 560px;
     margin-bottom: 32px;
 }
@@ -2967,7 +2986,7 @@ footer {
     border: none;
     outline: none;
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     width: 100%;
 }
@@ -2986,7 +3005,7 @@ footer {
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--muted);
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -3071,7 +3090,7 @@ footer {
 }
 
 .featured-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(22px, 3vw, 30px);
     line-height: 1.2;
     margin-bottom: 14px;
@@ -3085,8 +3104,8 @@ footer {
 
 .featured-excerpt {
     font-size: 15px;
-    color: #c8c8e8;
-    line-height: 1.75;
+    color: #d0d0ea;
+    line-height: 1.8;
     margin-bottom: 20px;
 }
 
@@ -3236,13 +3255,13 @@ footer {
 }
 
 .blog-date {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     font-size: 11px;
     color: var(--muted);
 }
 
 .blog-read-time {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     font-size: 11px;
     color: var(--muted);
 }
@@ -3331,8 +3350,8 @@ footer {
 
 .blog-card-excerpt {
     font-size: 14px;
-    color: #c8c8e8;
-    line-height: 1.75;
+    color: #d0d0ea;
+    line-height: 1.8;
     flex: 1;
     margin-bottom: 16px;
 }
@@ -3390,7 +3409,7 @@ footer {
 }
 
 .newsletter-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(24px, 4vw, 36px);
     line-height: 1.2;
     margin-bottom: 14px;
@@ -3399,8 +3418,8 @@ footer {
 
 .newsletter-desc {
     font-size: 15px;
-    color: #c8c8e8;
-    line-height: 1.75;
+    color: #d0d0ea;
+    line-height: 1.8;
     max-width: 480px;
     margin: 0 auto 28px;
     position: relative;
@@ -3421,7 +3440,7 @@ footer {
     border-radius: 12px;
     padding: 14px 18px;
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     outline: none;
     transition: border-color 0.3s;
@@ -3478,7 +3497,7 @@ footer {
 }
 
 .post-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(30px, 5vw, 48px);
     line-height: 1.15;
     margin-bottom: 20px;
@@ -3490,8 +3509,8 @@ footer {
 
 .post-subtitle {
     font-size: 17px;
-    color: #d0d0e8;
-    line-height: 1.75;
+    color: #d4d4ec;
+    line-height: 1.8;
     max-width: 640px;
     margin-bottom: 24px;
 }
@@ -3528,7 +3547,7 @@ footer {
 }
 
 .post-content h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(22px, 3vw, 30px);
     margin: 40px 0 16px;
     line-height: 1.3;
@@ -3541,9 +3560,9 @@ footer {
 }
 
 .post-content p {
-    font-size: 16px;
-    color: #d0d0e8;
-    line-height: 1.85;
+    font-size: 16.5px;
+    color: #d4d4ec;
+    line-height: 1.9;
     margin-bottom: 20px;
 }
 
@@ -3568,9 +3587,9 @@ footer {
 }
 
 .post-content li {
-    font-size: 16px;
-    color: #d0d0e8;
-    line-height: 1.8;
+    font-size: 16.5px;
+    color: #d4d4ec;
+    line-height: 1.85;
     margin-bottom: 8px;
 }
 
@@ -3584,7 +3603,7 @@ footer {
     background: var(--surface);
     border-left: 3px solid var(--accent);
     border-radius: 0 12px 12px 0;
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 18px;
     color: var(--text);
     line-height: 1.6;
@@ -3600,7 +3619,7 @@ footer {
 }
 
 .post-content code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-code);
     font-size: 13px;
     color: var(--accent3);
 }
@@ -3635,7 +3654,7 @@ footer {
 }
 
 .post-callout p {
-    color: #c8c8e8;
+    color: #d0d0ea;
     margin-bottom: 0;
 }
 
@@ -3651,16 +3670,16 @@ footer {
 }
 
 .post-cta h3 {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 24px;
     margin-bottom: 12px;
 }
 
 .post-cta p {
-    color: #c8c8e8;
+    color: #d0d0ea;
     font-size: 15px;
     margin-bottom: 20px;
-    line-height: 1.75;
+    line-height: 1.8;
 }
 
 /* Share buttons */
@@ -3710,7 +3729,7 @@ footer {
 }
 
 .related-posts-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 24px;
     margin-bottom: 24px;
 }
@@ -3802,7 +3821,7 @@ footer {
 }
 
 .newsletter-success-text {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 18px;
     color: var(--text);
     line-height: 1.5;
@@ -3921,24 +3940,25 @@ section[id] {
 
 /* === More readable hook text === */
 .hook-text {
-    font-family: 'Instrument Serif', serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
     color: #e0ddf8;
     margin-bottom: 10px;
 }
 
 .hook-context {
     font-size: 12px;
-    color: #a0a0c0;
-    font-family: 'JetBrains Mono', monospace;
+    color: #a8a8cc;
+    font-family: var(--font-code);
     line-height: 1.6;
 }
 
 /* === About highlights — richer number glow === */
 .highlight-num {
     display: block;
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 38px;
     font-weight: 700;
     line-height: 1;
@@ -3947,11 +3967,11 @@ section[id] {
 }
 
 .highlight-label {
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 11.5px;
+    font-weight: 600;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: #a0a0c0;
+    color: #a8a8cc;
     line-height: 1.5;
 }
 
@@ -3974,25 +3994,27 @@ section[id] {
 
 /* === Post hook (experience desc) better color === */
 .post-hook {
-    font-size: 13px;
-    color: #c0c0dc;
-    line-height: 1.6;
+    font-size: 14px;
+    color: #c8c8e0;
+    line-height: 1.7;
     margin-bottom: 6px;
 }
 
 /* === pf-desc readability === */
 .pf-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: #a8a8cc;
-    line-height: 1.7;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
 }
 
 /* === Testimonial text boost === */
 .testimonial-text {
-    font-family: 'Instrument Serif', serif;
-    font-size: 15px;
-    line-height: 1.75;
-    color: #ddddf0;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    color: #e0ddf8;
     flex: 1;
     font-style: italic;
 }
@@ -4008,9 +4030,9 @@ section[id] {
 }
 
 .video-desc {
-    font-size: 13px;
-    color: #a0a0c8;
-    line-height: 1.65;
+    font-size: 13.5px;
+    color: #a8a8cc;
+    line-height: 1.7;
 }
 
 /* === Contact section heading extra pop === */
@@ -4033,8 +4055,9 @@ section[id] {
 
 /* === Timing table why pale text override === */
 .timing-why {
-    color: #9898c0;
-    font-size: 12px;
+    color: #a8a8cc;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
 }
 
 /* === More visible section borders in skills table === */
@@ -4055,21 +4078,21 @@ section[id] {
 
 /* === Premium section text === */
 .premium-section>p {
-    color: #d0d0e8 !important;
+    color: #d4d4ec !important;
     font-size: 15px !important;
-    line-height: 1.8 !important;
+    line-height: 1.85 !important;
 }
 
 /* === Showcase intro text === */
 .showcase-intro p {
-    color: #c8c8e8 !important;
+    color: #d0d0ea !important;
     font-size: 16px !important;
-    line-height: 1.8 !important;
+    line-height: 1.85 !important;
 }
 
 /* === Contact section body text === */
 #contact+div p {
-    color: #c0c0dc;
+    color: #c8c8e0;
 }
 
 /* === Better background for day-card header === */
@@ -4127,16 +4150,16 @@ strong {
 
 /* === Day card body desc improve === */
 .day-body .post-hook {
-    color: #c0c0dc;
-    font-size: 13px;
-    line-height: 1.65;
+    color: #c8c8e0;
+    font-size: 14px;
+    line-height: 1.7;
 }
 
 /* === Testimonial role readable === */
 .testimonial-role {
     font-size: 11px;
-    color: #9898c0;
-    font-family: 'JetBrains Mono', monospace;
+    color: #a8a8cc;
+    font-family: var(--font-code);
 }
 
 /* === Improve contact info label === */
@@ -4145,7 +4168,7 @@ strong {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #8888b0;
+    color: #9898c0;
     margin-bottom: 6px;
 }
 
@@ -4161,12 +4184,12 @@ section[id]+div {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #9898c0;
+    color: #a8a8cc;
 }
 
 /* === Nav links brighter default === */
 .nav-link {
-    color: #9898c0;
+    color: #a8a8cc;
 }
 
 .nav-link:hover {
@@ -4228,7 +4251,7 @@ section[id]+div {
 }
 
 .projects-hero-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(34px, 5vw, 58px);
     line-height: 1.1;
     margin-bottom: 20px;
@@ -4239,8 +4262,8 @@ section[id]+div {
 }
 
 .projects-hero-subtitle {
-    font-size: 16px;
-    color: #c8c8e0;
+    font-size: 16.5px;
+    color: #d0d0ea;
     max-width: 560px;
     line-height: 1.8;
     margin-bottom: 40px;
@@ -4267,7 +4290,7 @@ section[id]+div {
 }
 
 .projects-stat-num {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: 28px;
     font-weight: 700;
     line-height: 1;
@@ -4363,7 +4386,7 @@ section[id]+div {
 }
 
 .project-featured-title {
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--font-heading);
     font-size: clamp(20px, 2.5vw, 28px);
     line-height: 1.2;
     color: var(--text);

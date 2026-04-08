@@ -1,5 +1,36 @@
 import type { Metadata } from "next";
+import { Inter, Instrument_Serif, JetBrains_Mono, Syne } from "next/font/google";
 import "./globals.css";
+
+/* ── Optimised font loading via next/font (self-hosted, zero FOUT) ── */
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-serif",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-syne",
+});
 
 export const metadata: Metadata = {
   title: "Md Shafiqur Rahman — AI Automation Expert",
@@ -166,13 +197,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${syne.variable}`}>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-
         <link rel="canonical" href="https://shafiqur.dev/" />
         <script
           type="application/ld+json"

@@ -5,18 +5,25 @@ import { getAllProjects } from "../lib/projects";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://shafiqur.dev";
 
+  const posts = getAllPosts();
+  const projects = getAllProjects();
+  const latestContentDate = [...posts, ...projects]
+    .map((item) => new Date(item.date))
+    .filter((date) => !Number.isNaN(date.getTime()))
+    .sort((a, b) => b.getTime() - a.getTime())[0];
+
   // Dynamic: read all published blog posts from content/blog/
-  const blogEntries = getAllPosts().map((post) => ({
+  const blogEntries = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(),
+    lastModified: post.date ? new Date(post.date) : undefined,
     changeFrequency: "monthly" as const,
     priority: post.featured ? 0.9 : 0.7,
   }));
 
   // Dynamic: read all published projects from content/projects/
-  const projectEntries = getAllProjects().map((project) => ({
+  const projectEntries = projects.map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(),
+    lastModified: project.date ? new Date(project.date) : undefined,
     changeFrequency: "monthly" as const,
     priority: project.featured ? 0.9 : 0.8,
   }));
@@ -24,19 +31,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: latestContentDate,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: latestContentDate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified: new Date(),
+      lastModified: latestContentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },

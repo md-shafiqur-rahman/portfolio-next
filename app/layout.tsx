@@ -37,6 +37,13 @@ export const metadata: Metadata = {
   description:
     "Md Shafiqur Rahman is an AI Automation Expert specializing in n8n, Make, Zapier workflows. Building intelligent automation systems that save time and multiply results.",
   metadataBase: new URL("https://shafiqur.dev"),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: "website",
     url: "https://shafiqur.dev/",
@@ -199,7 +206,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${syne.variable}`}>
       <head>
-        <link rel="canonical" href="https://shafiqur.dev/" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgJsonLd) }}

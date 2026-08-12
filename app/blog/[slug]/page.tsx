@@ -17,9 +17,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { slug } = await params;
     const post = await getPostBySlug(slug);
     if (!post) return { title: "Post Not Found" };
+    const url = `/blog/${slug}`;
     return {
         title: `${post.title} — Md Shafiqur Rahman`,
         description: post.excerpt,
+        alternates: { canonical: url },
+        openGraph: {
+            type: "article",
+            url,
+            title: post.title,
+            description: post.excerpt,
+            publishedTime: post.date ? new Date(post.date).toISOString() : undefined,
+            authors: ["Md Shafiqur Rahman"],
+        },
     };
 }
 
